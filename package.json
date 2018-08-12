@@ -1,0 +1,69 @@
+{
+  "name": "node-addon-api-async-tsf",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wilhelm Matilainen",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "wilu": "0.0.48"
+  },
+  "build": {
+    "variables": {
+      "node_version": "$(shell node --version)"
+    },
+    "options": {
+      "compiler": {
+        "all": [
+          "g",
+          "ggdb",
+          "rdynamic",
+          "pthread",
+          "O0",
+          "Wall",
+          "Werror",
+          "Wfatal-errors"
+        ],
+        "c": [
+          "std=gnu11",
+          "Wstrict-prototypes",
+          "Wno-misleading-indentation"
+        ]
+      }
+    },
+    "search": {
+      "includes": [],
+      "libraries": []
+    },
+    "+": {
+      "all": {
+        "name": "async_tsf",
+        "node": true,
+        "sources": {
+          "include": [
+            "*.c"
+          ]
+        },
+        "libraries": {
+          "shared": [
+            "m",
+            "pthread",
+            "dl"
+          ]
+        }
+      },
+      "compile-commands": {
+        "sources": {
+          "path": "."
+        },
+        "commands": [
+          "bear --append -o build/compile_commands.json make"
+        ]
+      }
+    }
+  }
+}
